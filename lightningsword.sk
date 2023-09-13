@@ -1,0 +1,10 @@
+command /lightning-sword:
+    permission: lightning.sword
+    permission message: &cYou do not have permission to do this!
+    trigger:
+        set {sword} to unbreakable iron sword with sharpness 10 and fire aspect 4 named "&b&l&nLightning Sword"
+        give {sword} to player
+
+on damage:
+    if attacker's tool is {sword}:
+        smite victim
