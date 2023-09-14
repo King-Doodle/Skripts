@@ -2,7 +2,9 @@ command /lightning-sword:
     permission: lightning.sword
     permission message: &cYou do not have permission to do this!
     trigger:
-        set {sword} to unbreakable iron sword named "&b&l&nLightning Sword" with enchants sharpness 10 and fire aspect 4 
+        set {sword} to unbreakable iron sword named "&b&l&nLightning Sword"
+        enchant {sword} with sharpness 10
+        enchant {sword} with fire aspect 4
         give {sword} to player
 
 on damage:
