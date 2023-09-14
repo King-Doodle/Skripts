@@ -1,0 +1,21 @@
+command /queue:
+    trigger:    
+        if {queue::%player%} <= 0:
+            if {queue::*} = 2:
+                set {queue::*} to 0
+                clear {queuetp::*}
+                send "&7Teleporting..." to {queuetp::*}
+                teleport {queuetp::*} to {loc}
+            else:
+                send "&aYou have been added to the queue!"
+                add 1 to {queue::%player%}
+                set {queuetp::%player%} to player
+        else:
+            send "&cYou are already in this queue!" to player
+
+command /setloc:
+    permission: op
+    trigger:
+        set {loc} to player's location
+        send "&aSuccessfully set location to &3%{loc}%&a."
+    
