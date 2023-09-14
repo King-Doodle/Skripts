@@ -7,9 +7,9 @@ command /queue:
         if {queue::%player%} <= 0:
             if {queue::*} = {numqueue}:
                 set {queue::*} to 0
-                clear {queuetp::*}
                 send "&7Teleporting..." to {queuetp::*}
                 teleport {queuetp::*} to {loc}
+                clear {queuetp::*}
             else:
                 send "&aYou have been added to the queue!"
                 add 1 to {queue::%player%}
