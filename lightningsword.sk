@@ -1,5 +1,7 @@
 #----Made by KingDoodle----#
 #---Works as of 9/13/2023---#
+#---Lightning Sword Skript---#
+#---Requested by SkillAura---#
 
 command /lightning-sword:
     permission: lightning.sword
