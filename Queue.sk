@@ -1,7 +1,11 @@
+on load:
+    if {numqueue} is not set:
+        set {numqueue} to 2
+
 command /queue:
     trigger:    
         if {queue::%player%} <= 0:
-            if {queue::*} = 2:
+            if {queue::*} = {numqueue}:
                 set {queue::*} to 0
                 clear {queuetp::*}
                 send "&7Teleporting..." to {queuetp::*}
@@ -18,4 +22,14 @@ command /setloc:
     trigger:
         set {loc} to player's location
         send "&aSuccessfully set location to &3%{loc}%&a."
+
+command /setqueue <number>:
+    usage: &cAdd a number to set a queue! the default number is 2.   
+    permission: op
+    trigger:
+        set {numqueue} to arg-1
+        send "&aSuccessfully set queue to &3%{numqueue}%&a."
+        
+
+
     
