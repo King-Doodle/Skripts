@@ -1,6 +1,6 @@
 # Skripts
 # A lot of skripts.
-Warning: this is meant for skripts an skripts only.
+Warning: this is meant for skripts and skripts only.
 if you do not know wha skript is, it is a minecraft plugin.
 it simplifies code into simple english language.
 Any code here will NOT work on JavaScript.
