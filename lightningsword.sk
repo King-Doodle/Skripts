@@ -7,4 +7,4 @@ command /lightning-sword:
 
 on damage:
     if attacker's tool is {sword}:
-        smite victim
+        strike lightning effect at victim
