@@ -1,0 +1,20 @@
+on right click:
+    add targeted block to {block::%player%}
+    give {block::%player%} to player
+
+command /addblockdrop:
+    permission: op
+    trigger:
+        set {_adminblock} to targeted block
+        loop all players:
+            if {block::%loop-player%} contains {_adminblock}:
+                exit loop
+            else:
+                add {_adminblock} to {block::%loop-player%}
+                wait 15 seconds
+                remove {_adminblock} from {block::%loop-player%}
+
+command /resetblockdrop:
+    permission: op
+    trigger:
+        clear {block::*}
