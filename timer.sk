@@ -1,0 +1,42 @@
+function shave(n: number) :: integer: # function to wipe off the decimals of a number
+  set {_number::*} to split "%{_n}%" at "." # cutting the number in half where the decimal point was
+  return {_number::1}
+
+command /timer:
+  executable by: players
+  trigger:
+      set {ptimer::%player's uuid%} to true
+      set {_timer.value} to 600 # the value is in seconds meaning this is 10 minutes
+      wait 1 second
+      loop 600 times:
+          if {ptimer::%player's uuid%} = true:
+              while {pause} != true: # pause feature
+                  set {_timer.minutes.unparsed} to ({_timer.value} / 60) # getting the time left formatted in minutes
+                  set {_timer.minutes} to shave({_timer.minutes.unparsed}) # getting the minute value
+                  set {_timer.seconds} to ({_timer.value} - ({_timer.minutes} * 60)) # getting the seconds
+                  if {_timer.seconds} < 10: # self-explanatory
+                      set {_timer.seconds.string} to "0%{_timer.seconds}%" # formatting the seconds as text because 4:5 doesn't make sense
+                  else:
+                      set {_timer.seconds.string} to "%{_timer.seconds}%" # still formatting
+                  if {_timer.minutes.unparsed} < 1: # I don't even think this part is necessary
+                      send action bar "0:%{_timer.seconds.string}%" to player
+                  else: # this part is tho
+                      send action bar "%{_timer.minutes}%:%{_timer.seconds.string}%" to player
+                  if loop-number >= 590: # 10! 9! 8! ... 2! 1!
+                      play sound "block.note_block.pling" with volume 1 to player
+                  subtract 1 from {_timer.value} # so it can actually count down
+                  wait 1 second # wowie I wonder what this is for
+          else:
+              send action bar "&4Countdown Canceled! Stopping Timer..." to player # why did you cancel it?
+              exit trigger # bye bye
+      send action bar "&aCountdown Finished!" to player # self-explanatory
+      wait 3 seconds # why is this even there
+
+command /forcestop:
+  permission: op
+  trigger: 
+      # this is pretty self-explanatory
+      send "&7Stopping..."
+      loop all players:
+          set {ptimer::%loop-player's uuid%} to false
+      send "&aAll Timers Successfully Stopped
